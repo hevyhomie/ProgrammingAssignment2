@@ -1,8 +1,7 @@
-## Put comments here that give an overall description of what your
-## functions do
+## makeCacheMatrix caches a matrix
+## cacheSolve calculates inverse of matrix if not already calculated
 
-## Write a short comment describing this function
-
+## caches a matrix that can be called by the get,set,getInverse, setInverse
 makeCacheMatrix <- function(x = matrix()) {
   i <- NULL
   set <- function(y){
@@ -19,7 +18,7 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Write a short comment describing this function
+## calculate if not already the inverse of a matrix
 
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
@@ -29,6 +28,10 @@ cacheSolve <- function(x, ...) {
     return(i)
   }
   data <- x$get()
+  if (det(data) == 0){
+    message("Matrix is singular. Determinant cannot be divided by 0.")
+    return(1)
+  }
   i <- solve(data,...)
   x$setInverse(i)
   i
